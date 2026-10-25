@@ -1,0 +1,2 @@
+const test=require('node:test');const assert=require('node:assert/strict');const app=require('../src/app');const http=require('node:http');
+test('protected profile endpoint rejects missing token',async()=>{const s=http.createServer(app);await new Promise(r=>s.listen(0,r));try{const res=await fetch(`http://127.0.0.1:${s.address().port}/api/v1/profiles/me`);assert.equal(res.status,401);assert.equal((await res.json()).error.code,'AUTH_REQUIRED');}finally{await new Promise(r=>s.close(r));}});
