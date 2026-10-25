@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: kwachalink-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://msukwainno-coder.github.io
+      - key: ADMIN_USER_IDS
+        sync: false
