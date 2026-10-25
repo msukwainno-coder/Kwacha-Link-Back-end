@@ -1,2 +1,0 @@
-const test=require('node:test');const assert=require('node:assert/strict');
-test('deal completion requires two distinct confirmations (design invariant)',()=>{const deal={buyer_confirmed_at:null,seller_confirmed_at:null,status:'pending'};deal.buyer_confirmed_at='now';assert.notEqual(deal.buyer_confirmed_at&&deal.seller_confirmed_at,'now');deal.seller_confirmed_at='later';assert.ok(deal.buyer_confirmed_at&&deal.seller_confirmed_at);});

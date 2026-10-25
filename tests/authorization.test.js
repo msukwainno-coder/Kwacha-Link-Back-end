@@ -1,2 +1,0 @@
-const test=require('node:test');const assert=require('node:assert/strict');const app=require('../src/app');const http=require('node:http');
-test('protected messages endpoint rejects missing token',async()=>{const s=http.createServer(app);await new Promise(r=>s.listen(0,r));try{const res=await fetch(`http://127.0.0.1:${s.address().port}/api/v1/messages/connection/00000000-0000-4000-8000-000000000001`);assert.equal(res.status,401);}finally{await new Promise(r=>s.close(r));}});

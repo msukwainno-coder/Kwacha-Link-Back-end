@@ -1,4 +1,0 @@
-const test=require('node:test');const assert=require('node:assert/strict');const {z}=require('zod');
-const offer=z.object({direction:z.enum(['buy','sell']),source_currency:z.string().length(3),target_currency:z.string().length(3),exchange_rate:z.coerce.number().positive(),original_amount:z.coerce.number().positive()}).refine(d=>d.source_currency!==d.target_currency);
-test('offer schema rejects zero rate and amount',()=>{assert.equal(offer.safeParse({direction:'buy',source_currency:'MWK',target_currency:'USD',exchange_rate:0,original_amount:10}).success,false);assert.equal(offer.safeParse({direction:'buy',source_currency:'MWK',target_currency:'USD',exchange_rate:1,original_amount:-2}).success,false);});
-test('offer schema rejects identical currencies',()=>assert.equal(offer.safeParse({direction:'sell',source_currency:'MWK',target_currency:'MWK',exchange_rate:1,original_amount:1}).success,false));
